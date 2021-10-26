@@ -60,6 +60,10 @@ public class questionController : MonoBehaviour
                reponses[i - 1].GetComponentInChildren<Toggle>().GetComponentInChildren<Text>().color = Color.red;
            }
        }
+       foreach(var rep in reponses)
+       {
+           rep.GetComponentInChildren<Toggle>().interactable = false;
+       }
        btnContinuer.SetActive(true);
        btnValider.SetActive(false);
    }
@@ -98,6 +102,7 @@ public class questionController : MonoBehaviour
             for (int i = 1; i < q.Count; i++)
             {
                 reponses.Add(Instantiate(tog, togGroup.transform));
+                reponses[i - 1].GetComponentInChildren<Toggle>().group = togGroup.GetComponent<ToggleGroup>();
                 reponses[i-1].GetComponentInChildren<Toggle>().GetComponentInChildren<Text>().text = q[i].Item1;
                 reponses[i-1].SetActive(true);
                 reponses[i - 1].GetComponentInChildren<Toggle>().isOn = false;
